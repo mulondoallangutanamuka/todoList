@@ -12,6 +12,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+mongoose.set("strictQuery", false)
 mongoose.connect("mongodb+srv://alfam:mukisa19900@cluster0.meeku6x.mongodb.net/todoListDB", {useNewUrlParser: true});
 
 const itemsSchema = {
@@ -135,6 +136,6 @@ app.get("/about", function(req, res){
   res.render("about");
 });
 
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
   console.log("Server started on port 3000");
 });
